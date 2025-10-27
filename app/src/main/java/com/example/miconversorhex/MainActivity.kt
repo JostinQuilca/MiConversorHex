@@ -1,6 +1,6 @@
-// !! IMPORTANTE !! CAMBIA ESTA LÍNEA AHORA MISMO
-package com.example.miconversorhex // <- PON TU PAQUETE AQUÍ (el que apuntaste en el Paso 1)
+package com.example.miconversorhex // Asegúrate que sea tu paquete
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,32 +9,32 @@ import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
 
-    // Declaramos las vistas
+    // Declaramos las vistas de esta pantalla
     private lateinit var etDecimal: TextInputEditText
-    private lateinit var etHexadecimal: TextInputEditText
     private lateinit var btnDecimalAHex: Button
-    private lateinit var btnHexADecimal: Button
     private lateinit var tvResultado: TextView
+    private lateinit var btnIrAHex: Button // Botón para ir a la otra pantalla
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main) // Esto conecta con el XML
+        setContentView(R.layout.activity_main)
 
         // Inicializamos las vistas
         etDecimal = findViewById(R.id.etDecimal)
-        etHexadecimal = findViewById(R.id.etHexadecimal)
         btnDecimalAHex = findViewById(R.id.btnDecimalAHex)
-        btnHexADecimal = findViewById(R.id.btnHexADecimal)
         tvResultado = findViewById(R.id.tvResultado)
+        btnIrAHex = findViewById(R.id.btnIrAHex)
 
-        // Configuramos el listener para el botón Decimal -> Hex
+        // Configuramos el listener para el botón de conversión
         btnDecimalAHex.setOnClickListener {
             convertirDecimalAHex()
         }
 
-        // Configuramos el listener para el botón Hex -> Decimal
-        btnHexADecimal.setOnClickListener {
-            convertirHexADecimal()
+        // Configuramos el listener para el botón de NAVEGACIÓN
+        btnIrAHex.setOnClickListener {
+            // Creamos un "Intent" para abrir la nueva Activity
+            val intent = Intent(this, HexADecimalActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -48,26 +48,9 @@ class MainActivity : AppCompatActivity() {
         try {
             val valorDecimal = inputDecimal.toLong()
             val valorHex = java.lang.Long.toHexString(valorDecimal).uppercase()
-            etHexadecimal.setText(valorHex)
             tvResultado.text = "Resultado: $valorHex"
         } catch (e: NumberFormatException) {
             tvResultado.text = "Error: Número decimal inválido."
-        }
-    }
-
-    private fun convertirHexADecimal() {
-        val inputHex = etHexadecimal.text.toString()
-        if (inputHex.isEmpty()) {
-            tvResultado.text = "Error: El campo hexadecimal está vacío."
-            return
-        }
-
-        try {
-            val valorDecimal = java.lang.Long.parseLong(inputHex, 16)
-            etDecimal.setText(valorDecimal.toString())
-            tvResultado.text = "Resultado: $valorDecimal"
-        } catch (_: NumberFormatException) {
-            tvResultado.text = "Error: Número hexadecimal inválido."
         }
     }
 }

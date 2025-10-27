@@ -8,56 +8,56 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center_horizontal"
-    tools:context=".MainActivity">
+    tools:context=".HexADecimalActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conversor Decimal -> Hex"
+        android:text="Conversor Hex -> Decimal"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="32dp"/>
 
-    <!-- Sección Decimal -->
+    <!-- Sección Hexadecimal -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Número Decimal"
+        android:hint="Número Hexadecimal"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDecimal"
+            android:id="@+id/etHexadecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="textCapCharacters"
+            android:digits="0123456789ABCDEFabcdef" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnDecimalAHex"
+        android:id="@+id/btnHexADecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Convertir a Hexadecimal"
-        android:layout_marginTop="8dp" />
+        android:text="Convertir a Decimal"
+        android:layout_marginTop="8dp"/>
 
     <!-- Sección de Resultado -->
     <TextView
-        android:id="@+id/tvResultado"
+        android:id="@+id/tvResultadoHex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Resultado:"
         android:textSize="18sp"
         android:textStyle="italic"
         android:layout_marginTop="32dp"
-        android:textAlignment="center"
-        android:layout_marginBottom="32dp"/>
+        android:textAlignment="center"/>
 
-    <!-- Botón de Navegación -->
+    <!-- Botón de Navegación para Volver -->
     <Button
-        android:id="@+id/btnIrAHex"
+        android:id="@+id/btnVolver"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ir a Hexadecimal -> Decimal"
+        android:text="Volver"
         android:layout_marginTop="24dp"/>
 
 </LinearLayout>
